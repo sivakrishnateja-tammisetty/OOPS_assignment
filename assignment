@@ -1,0 +1,54 @@
+#include <iostream>
+
+class BankAccount {
+private:
+    double balance;
+    int accountNumber;
+
+public:
+    BankAccount(double initialBalance, int accountNum) {
+        balance = initialBalance;
+        accountNumber = accountNum;
+    }
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        } else {
+            std::cout << "Invalid deposit amount." << std::endl;
+        }
+    }
+
+    void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        } else {
+            std::cout << "Invalid withdrawal amount or insufficient funds." << std::endl;
+        }
+    }
+
+    double getBalance() {
+        return balance;
+    }
+
+    int getAccountNumber() {
+        return accountNumber;
+    }
+};
+
+int main() {
+    // Create an instance of the BankAccount class
+    BankAccount myAccount(1000.0, 12345);
+
+    // Deposit $100 into the account
+    myAccount.deposit(100);
+
+    // Withdraw $50 from the account
+    myAccount.withdraw(50);
+
+    // Print the current account balance and account number
+    std::cout << "Account Number: " << myAccount.getAccountNumber() << std::endl;
+    std::cout << "Current Balance: $" << myAccount.getBalance() << std::endl;
+
+    return 0;
+}
